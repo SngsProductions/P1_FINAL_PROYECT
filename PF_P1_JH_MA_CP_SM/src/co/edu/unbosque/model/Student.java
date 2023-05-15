@@ -1,11 +1,17 @@
 package co.edu.unbosque.model;
 
+import java.io.Serializable;
+
 import javax.swing.JComboBox;
 
 import co.edu.unbosque.view.RegisterPane;
 
-public class Student {
-	private String name,id,email,gen,prog,borned,nat,times;
+public class Student extends Person implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RegisterPane rp;
 	private String []gender = {"Masculino" ,"Femenino"};
 	private String []program = {"ING.SISTEMAS" ,"ING.SISTEMAS NOCTURNA",  "ING.ELECTRONICA"};
@@ -32,22 +38,14 @@ public class Student {
 		    "Luxemburgo", "Macedonia del Norte", "Madagascar", "Malasia", "Malaui", "Maldivas", "Malí", "Malta", "Marruecos", "Mauricio", 
 		    "Mauritania", "México", "Micronesia", "Moldavia", "Mónaco", "Mongolia", "Montenegro", "Mozambique", "Namibia", "Nauru", "Nepal", 
 		    "Nicaragua", "Níger", "Nigeria", "Noruega", "Nueva Zelanda", "Omán", "Países Bajos", "Pakistán", "Palaos", "Panamá", "Papúa Nueva Guinea", 
-		    "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa","Republica Democratica del congo"};
+		    "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa","Republica Democratica del congo"}; +
 	
 	
-	public Student() {
+	
+	public Student(String name, String id, String email, String gen, String prog, String borned, String nat,
+			String times) {
+		super(name, id, email, gen, prog, borned, nat, times);
 		
-	}
-	public Student(String name, String id, String email, String program, String n, String borned,
-			String gender, String time) {
-		setName(name);
-		setId(id);
-		setEmail(email);
-		setTimes(time);
-		setBorned(borned);
-		setNat(n);
-		setGen(gender);
-		setProg(program);
 		
 	}
 	
@@ -100,54 +98,6 @@ public class Student {
 	}
 	public void setBorned_int(String[] borned_int) {
 		this.borned_int = borned_int;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getGen() {
-		return gen;
-	}
-	public void setGen(String gen) {
-		this.gen = gen;
-	}
-	public String getProg() {
-		return prog;
-	}
-	public void setProg(String prog) {
-		this.prog = prog;
-	}
-	public String getBorned() {
-		return borned;
-	}
-	public void setBorned(String borned) {
-		this.borned = borned;
-	}
-	public String getNat() {
-		return nat;
-	}
-	public void setNat(String nat) {
-		this.nat = nat;
-	}
-	public String getTimes() {
-		return times;
-	}
-	public void setTimes(String times) {
-		this.times = times;
 	}
 	
 	

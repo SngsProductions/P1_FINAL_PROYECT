@@ -31,7 +31,7 @@ public class Controller implements ActionListener {
 	private void initListeners() {
 		mf= new MainFrame();
 		rp = new RegisterPane();
-		st = new Student();
+		st = new Student(command, command, command, command, command, command, command, command);
 		mf.getMp().getBtn_exit().addActionListener(this);
 		mf.getMp().getBtn_reg().addActionListener(this);
 		mf.getRp().getBtn_cancel().addActionListener(this);

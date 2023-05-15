@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame{
 
 	private MainPane mp;
+	private RegisterPane rp;
 	private JButton btn_exit;
 	private JButton btn_reg;
 	
@@ -21,7 +22,7 @@ public class MainFrame extends JFrame{
 		setTitle("SISTEMA GESTION ACADEMICA UEB");
 		
 		setIconImage(new ImageIcon("icons\\logo.png").getImage());
-		setSize(1280,720);
+		setSize(1376,805);
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
@@ -34,12 +35,17 @@ public class MainFrame extends JFrame{
 
 	private void initComponents() {
 		
-		
+		rp = new RegisterPane();
+		rp.setVisible(false);
+		getContentPane().add(rp);
+		repaint();
+			
 		
 		mp = new MainPane();
 		getContentPane().add(mp);
 		repaint();
-			
+		
+		
 	}
 	
 	
@@ -48,25 +54,23 @@ public class MainFrame extends JFrame{
 	public MainPane getMp() {
 		return mp;
 	}
+	
+	public RegisterPane getRp() {
+		return rp;
+	}
+	
 
 	public void setMp(MainPane mp) {
 		this.mp = mp;
 	}
 
-	public JButton getBtn_reg() {
-		return btn_reg;
+	public void setRp(RegisterPane rp) {
+		this.rp = rp;
 	}
 
-	public void setBtn_reg(JButton btn_reg) {
-		this.btn_reg = btn_reg;
-	}
 
-	public JButton getBtn_exit() {
-		return btn_exit;
-	}
+	
 
-	public void setBtn_exit(JButton btn_exit) {
-		this.btn_exit = btn_exit;
-	}
+	
 	
 }

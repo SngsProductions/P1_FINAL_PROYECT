@@ -7,13 +7,16 @@ public abstract class Person implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String name,id,email;
+	protected String name;
+	protected String id;
+	protected String email;
 	protected String gen;
-	private String prog;
-	private String borned;
-	private String nat;
-	private String times;
-public Person(String name,String id,String email,String gen,String prog,String borned,String nat,String times) {
+	protected String prog;
+	protected String borned;
+	protected String nat;
+	protected String times;
+	protected String lastname;
+public Person(String name,String lastname,String id,String email,String gen,String prog,String borned,String nat,String times) {
 this.borned=borned;
 this.name=name;
 this.id=id;
@@ -22,6 +25,7 @@ this.gen=gen;
 this.prog=prog;
 this.nat=nat;
 this.times=times;
+this.lastname=lastname;
 }
 public String getName() {
 	return name;
@@ -71,4 +75,11 @@ public String getTimes() {
 public void setTimes(String times) {
 	this.times = times;
 }
+public String getLastname() {
+	return lastname;
+}
+public void setLastname(String lastname) {
+	this.lastname = lastname;
+}
+
 }

@@ -1,6 +1,7 @@
 package co.edu.unbosque.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.swing.JComboBox;
 
@@ -38,15 +39,21 @@ public class Student extends Person implements Serializable{
 		    "Luxemburgo", "Macedonia del Norte", "Madagascar", "Malasia", "Malaui", "Maldivas", "Malí", "Malta", "Marruecos", "Mauricio", 
 		    "Mauritania", "México", "Micronesia", "Moldavia", "Mónaco", "Mongolia", "Montenegro", "Mozambique", "Namibia", "Nauru", "Nepal", 
 		    "Nicaragua", "Níger", "Nigeria", "Noruega", "Nueva Zelanda", "Omán", "Países Bajos", "Pakistán", "Palaos", "Panamá", "Papúa Nueva Guinea", 
-		    "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa","Republica Democratica del congo"}; +
+		    "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa","Republica Democratica del congo"}; 
 	
 	
 	
-	public Student(String name, String id, String email, String gen, String prog, String borned, String nat,
+	public Student(String name,String lastname, String id, String email, String gen, String prog, String borned, String nat,
 			String times) {
-		super(name, id, email, gen, prog, borned, nat, times);
+		super(name,lastname, id, email, gen, prog, borned, nat, times);
 		
 		
+	}
+	@Override
+	public String toString() {
+		return "Student [Identificacion :" + id + "]" + "Nombre : " +name  + " Apellido: "+ lastname+ "Genero : "+ gen+
+	 "\r\n"+ "Correo : "+email+ "[Programa: "+prog+" ]"+"Franja horaria: "+ times+ " Lugar de nacimiento"+borned+"\r\n";
+				
 	}
 	
 	
@@ -99,6 +106,20 @@ public class Student extends Person implements Serializable{
 	public void setBorned_int(String[] borned_int) {
 		this.borned_int = borned_int;
 	}
+
+
+	
+
+
+
+	
+
+
+	
+
+
+	
+	
 	
 	
 	

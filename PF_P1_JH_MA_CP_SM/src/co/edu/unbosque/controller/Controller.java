@@ -7,6 +7,9 @@ import javax.mail.MessagingException;
 
 import co.edu.unbosque.model.Email;
 import co.edu.unbosque.model.Student;
+import co.edu.unbosque.model.StudentDTO;
+import co.edu.unbosque.model.persistence.DataBaseStudent;
+import co.edu.unbosque.model.persistence.StudentDAO;
 import co.edu.unbosque.view.MainFrame;
 import co.edu.unbosque.view.MainPane;
 import co.edu.unbosque.view.RegisterPane;
@@ -21,17 +24,22 @@ public class Controller implements ActionListener {
 	private String command;
 	private String option;
 	private String h;
-	
+	private DataBaseStudent f;
+	private StudentDAO std;
+	private StudentDTO sdto;
 	
 	public Controller() {
-	
+	f= new DataBaseStudent();
+	sdto= new StudentDTO();
+	std= new StudentDAO(sdto.getFileSt());
 		initListeners();
+		System.out.println(std.ViewList(sdto.getFile()).toString());
 	}
 
 	private void initListeners() {
 		mf= new MainFrame();
 		rp = new RegisterPane();
-		st = new Student(command, command, command, command, command, command, command, command);
+		st = new Student(command, command, command, command, command, command, command, command,command); 
 		mf.getMp().getBtn_exit().addActionListener(this);
 		mf.getMp().getBtn_reg().addActionListener(this);
 		mf.getRp().getBtn_cancel().addActionListener(this);
@@ -120,7 +128,7 @@ public class Controller implements ActionListener {
 				mf.getRp().getCbx_program().getSelectedItem().toString(),
 				mf.getRp().getCbx_n().getSelectedItem().toString(),
 				mf.getRp().getCbx_borned().getSelectedItem().toString(),
-				mf.getRp().getCbx_gender().getSelectedItem().toString(),h);
+				mf.getRp().getCbx_gender().getSelectedItem().toString(),h, command);
 		System.out.println("Guardado con exito " +mf.getRp().getTxt_email().getText() );
 		String email = mf.getRp().getTxt_email().getText();
 		e = new Email(email);

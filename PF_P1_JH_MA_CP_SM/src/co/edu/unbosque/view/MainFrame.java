@@ -14,6 +14,8 @@ public class MainFrame extends JFrame{
 
 	private MainPane mp;
 	private RegisterPane rp;
+	private ActivatePane ap;
+	private IncomePane ip;
 	private JButton btn_exit;
 	private JButton btn_reg;
 	
@@ -22,7 +24,7 @@ public class MainFrame extends JFrame{
 		setTitle("SISTEMA GESTION ACADEMICA UEB");
 		
 		setIconImage(new ImageIcon("icons\\logo.png").getImage());
-		setSize(1376,805);
+		setSize(1280,750);
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
@@ -39,7 +41,16 @@ public class MainFrame extends JFrame{
 		rp.setVisible(false);
 		getContentPane().add(rp);
 		repaint();
-			
+		
+		ap = new ActivatePane();
+		ap.setVisible(false);
+		getContentPane().add(ap);
+		repaint();
+		
+		ip = new IncomePane();
+		ip.setVisible(false);
+		getContentPane().add(ip);
+		repaint();
 		
 		mp = new MainPane();
 		getContentPane().add(mp);
@@ -50,6 +61,38 @@ public class MainFrame extends JFrame{
 	
 	
 
+
+	public IncomePane getIp() {
+		return ip;
+	}
+
+	public void setIp(IncomePane ip) {
+		this.ip = ip;
+	}
+
+	public ActivatePane getAp() {
+		return ap;
+	}
+
+	public void setAp(ActivatePane ap) {
+		this.ap = ap;
+	}
+
+	public JButton getBtn_exit() {
+		return btn_exit;
+	}
+
+	public void setBtn_exit(JButton btn_exit) {
+		this.btn_exit = btn_exit;
+	}
+
+	public JButton getBtn_reg() {
+		return btn_reg;
+	}
+
+	public void setBtn_reg(JButton btn_reg) {
+		this.btn_reg = btn_reg;
+	}
 
 	public MainPane getMp() {
 		return mp;

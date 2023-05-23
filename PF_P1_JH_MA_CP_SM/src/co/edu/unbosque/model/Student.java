@@ -15,7 +15,7 @@ public class Student extends Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private RegisterPane rp;
 	private String []gender = {"Masculino" ,"Femenino"};
-	private String []program = {"ING.SISTEMAS" ,"ING.SISTEMAS NOCTURNA",  "ING.ELECTRONICA"};
+	private String []program = {"ING.SISTEMAS" ,"ING.SISTEMAS NOCTURNA",  "ING.ELECTRONICA","ING.AMBIENTAL","BIOINGIENERIA","ING.INDUSTRIAL" };
 	private String []nation = {"Nacional", "Internacional"};
 	private String []borned_nat = {"Distrito Capital (Bogotá)","Amazonas",
 			 "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas"

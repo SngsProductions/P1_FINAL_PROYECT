@@ -46,7 +46,10 @@ public class Controller implements ActionListener {
 		mf.getRp().getBtn_save().addActionListener(this);
 		mf.getRp().getCbx_n().addActionListener(this);
 		mf.getRp().getCbx_program().addActionListener(this);
-		
+		mf.getMp().getBtn_ing().addActionListener(this);
+		mf.getIp().getBtn_cancel().addActionListener(this);
+		mf.getAp().getBtn_cancel().addActionListener(this);
+		mf.getMp().getBtn_act().addActionListener(this);
 		
 		
 	
@@ -57,18 +60,31 @@ public class Controller implements ActionListener {
 		
 		System.out.println(command);
 		switch(command) {
+		case "ACT":
+			mf.getAp().setVisible(true);
+			mf.getMp().setVisible(false);
+			break;
+				
+		case "ING":
+			mf.getIp().setVisible(true);
+			mf.getMp().setVisible(false);
+			break;
+			
 		case "RECHARGE":
 			recharge();
 			rp.repaint();
 			break;
-		case "SAVE":
-			saveData();
-			clearReg();
-			mf.getMp().setVisible(true);
 			
+		case "SAVE":
+			mf.getRp().setVisible(false);
+			mf.getMp().setVisible(true);
+			saveData();
+			clearReg();	
 			break;
 		case "CANCEL":
+			mf.getIp().setVisible(false);
 			mf.getRp().setVisible(false);
+			mf.getAp().setVisible(false);
 			mf.getMp().setVisible(true);
 			clearReg();
 			break;

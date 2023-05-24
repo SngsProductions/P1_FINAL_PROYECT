@@ -2,14 +2,19 @@ package co.edu.unbosque.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.mail.MessagingException;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import co.edu.unbosque.model.Email;
+import co.edu.unbosque.model.Person;
 import co.edu.unbosque.model.Student;
 import co.edu.unbosque.model.StudentDTO;
 import co.edu.unbosque.model.persistence.DataBaseStudent;
 import co.edu.unbosque.model.persistence.StudentDAO;
+import co.edu.unbosque.view.IncomePane;
 import co.edu.unbosque.view.MainFrame;
 import co.edu.unbosque.view.MainPane;
 import co.edu.unbosque.view.RegisterPane;
@@ -19,27 +24,34 @@ public class Controller implements ActionListener {
 	private MainFrame mf;
 	private RegisterPane rp;
 	private MainPane mp;
+	private IncomePane ip;
 	private Email e;
 	private Student st;
 	private String command;
 	private String option;
-	private String h;
+	private String horario;
 	private DataBaseStudent f;
 	private StudentDAO std;
 	private StudentDTO sdto;
+	private Person p;
+	private boolean active_c;
+	private boolean all;
 	
 	public Controller() {
 	f= new DataBaseStudent();
 	sdto= new StudentDTO();
+	
 	std= new StudentDAO(sdto.getFileSt());
-		initListeners();
-		System.out.println(std.ViewList(sdto.getFile()).toString());
+	st=new Student();
+	initListeners();
+	System.out.println(std.ViewList(sdto.getFile()).toString());
 	}
 
 	private void initListeners() {
+		
 		mf= new MainFrame();
 		rp = new RegisterPane();
-		st = new Student(command, command, command, command, command, command, command, command,command); 
+		
 		mf.getMp().getBtn_exit().addActionListener(this);
 		mf.getMp().getBtn_reg().addActionListener(this);
 		mf.getRp().getBtn_cancel().addActionListener(this);
@@ -50,6 +62,8 @@ public class Controller implements ActionListener {
 		mf.getIp().getBtn_cancel().addActionListener(this);
 		mf.getAp().getBtn_cancel().addActionListener(this);
 		mf.getMp().getBtn_act().addActionListener(this);
+		mf.getAp().getBtn_activate().addActionListener(this);
+		mf.getIp().getBtn_income().addActionListener(this);
 		
 		
 	
@@ -60,6 +74,12 @@ public class Controller implements ActionListener {
 		
 		System.out.println(command);
 		switch(command) {
+		case "ACTIVATE":
+			giveCode();
+			mf.getAp().setVisible(false);
+			mf.getMp().setVisible(true);
+			break;
+			
 		case "ACT":
 			mf.getAp().setVisible(true);
 			mf.getMp().setVisible(false);
@@ -76,21 +96,37 @@ public class Controller implements ActionListener {
 			break;
 			
 		case "SAVE":
-			mf.getRp().setVisible(false);
-			mf.getMp().setVisible(true);
-			saveData();
-			clearReg();	
+			if(true == isAllInfo()) {
+				mf.getRp().setVisible(false);
+				mf.getMp().setVisible(true);
+				saveData();
+				clearReg();
+			}else {
+				//REMPLAZAR POR JOPTION PANE
+				System.out.println("Por favor complete todos los espacios");
+				break;
+			}
+			break;	
+			
+			
+		case "CANCEL_IP":
+		mf.getIp().setVisible(false);
+		mf.getMp().setVisible(true);
 			break;
-		case "CANCEL":
-			mf.getIp().setVisible(false);
-			mf.getRp().setVisible(false);
+			
+		case "CANCEL_AP":
 			mf.getAp().setVisible(false);
+			mf.getMp().setVisible(true);
+			break;
+			
+		case "CANCEL":
+			mf.getRp().setVisible(false);
 			mf.getMp().setVisible(true);
 			clearReg();
 			break;
 			
 		case "REG":
-			addItemsReg();
+			pushData(mf.getRp().getCbx_n(),mf.getRp().getCbx_borned(),mf.getRp().getCbx_gender(), mf.getRp().getCbx_program());	
 			mf.getMp().setVisible(false);
 			mf.getRp().setVisible(true);
 			mf.getRp().repaint();
@@ -99,12 +135,41 @@ public class Controller implements ActionListener {
 		case "EXIT":
 			System.exit(0);
 			break;
+		case "INCOME":
+			mf.getIpt().setVisible(true);
+			mf.getMp().setVisible(false);
 		}
 	}
 
-
+	private void giveCode() {
+	ArrayList<Student>find = new ArrayList<Student>();
+	find.addAll(sdto.getStudents());
+	
+	Student s = sdto.getStudentdao().searchStudent(mf.getAp().getTxt_email().getText(),mf.getAp().getTxt_code().getText(), find);
+	if(s!=null) {
+		
+		JOptionPane.showMessageDialog(mp, "Se activo con exito!");
+	}else {
+		System.out.println("No se pudo activar");
+		mf.getAp().getTxt_code().setText("");
+		mf.getAp().getTxt_email().setText("");
+		}
+	}
 
 	
+
+	private void pushData(JComboBox cbx_n, JComboBox cbx_borned, JComboBox cbx_gender, JComboBox cbx_program) {
+		for (int g = 0 ; g< st.getGender().length; g++) {
+			cbx_gender.addItem(st.getGender()[g].toString());
+		}
+		for (int b = 0 ; b< st.getNation().length; b++) {
+			cbx_n.addItem(st.getNation()[b].toString());
+		}
+		for (int p = 0 ; p< st.getProgram().length; p++) {
+			cbx_program.addItem(st.getProgram()[p].toString());
+		}	
+		
+	}
 
 	private void recharge() {
 		try {
@@ -125,36 +190,74 @@ public class Controller implements ActionListener {
 			}
 	}
 
-	private void addItemsReg() {
-		st.pushData(mf.getRp().getCbx_n(),mf.getRp().getCbx_borned(),mf.getRp().getCbx_gender(), mf.getRp().getCbx_program());	
-	}
+	
 
 	private void saveData() {
 		
-		if(	mf.getRp().getCbx_program().getSelectedItem().toString().equals("ING.SISTEMAS NOCTURNA")){
-			h = "Nocturna";
-		}else {
-			h = "Diurna";
-		}
+		ArrayList<Student>find = new ArrayList<Student>();
+		
+			if(	mf.getRp().getCbx_program().getSelectedItem().toString().equals("ING.SISTEMAS NOCTURNA")){
+				horario = "Nocturna";
+			}else {
+				horario = "Diurna";
+			}
+			
+			
+			
+			if(sdto.getStudentdao().isAdded(mf.getRp().getTxt_id().getText(),find)) {
+				System.out.println("Ya existe una persona con estos datos");
+			}else {
+				String email = mf.getRp().getTxt_email().getText();
+				e = new Email(email);
+				sdto.getStudentdao().insert(sdto.getStudents(),sdto.getFile(),st = new Student(mf.getRp().getTxt_name().getText(),mf.getRp().getTxt_name().getText(),
+						mf.getRp().getTxt_id().getText(),
+						mf.getRp().getTxt_email().getText().toLowerCase(),
+						mf.getRp().getCbx_program().getSelectedItem().toString(),
+						mf.getRp().getCbx_n().getSelectedItem().toString(),
+						mf.getRp().getCbx_borned().getSelectedItem().toString(),
+						mf.getRp().getCbx_gender().getSelectedItem().toString(),horario,
+						e.getCode(),active_c));
+				
+				
+				System.out.println(e.getCode());
+				
+				
+				active_c = false;
+			}
+			
+																//aca va a ir el txt last name 
+			
+			
+			
 	
-
-		st = new Student(mf.getRp().getTxt_name().getText(),
-				mf.getRp().getTxt_id().getText(),
-				mf.getRp().getTxt_email().getText(),
-				mf.getRp().getCbx_program().getSelectedItem().toString(),
-				mf.getRp().getCbx_n().getSelectedItem().toString(),
-				mf.getRp().getCbx_borned().getSelectedItem().toString(),
-				mf.getRp().getCbx_gender().getSelectedItem().toString(),h, command);
-		System.out.println("Guardado con exito " +mf.getRp().getTxt_email().getText() );
-		String email = mf.getRp().getTxt_email().getText();
-		e = new Email(email);
-		mf.getRp().setVisible(false);
 	}
 
 
 	
 
 	
+
+	private boolean isAllInfo() {
+		
+		if(mf.getRp().getTxt_name().getText().equals("")){
+			return false;
+		}else if(mf.getRp().getTxt_id().getText().equals("")){
+			return false;
+		}else if(mf.getRp().getTxt_email().getText().equals("")){
+			return false;
+		}else if(mf.getRp().getCbx_program().getSelectedItem().toString().equals("")) {
+			return false;
+		}else if(mf.getRp().getCbx_n().getSelectedItem().toString().equals("")) {
+			return false;
+		}else if(mf.getRp().getCbx_borned().getSelectedItem().toString().equals("")) {
+			return false;
+		}else if(mf.getRp().getCbx_gender().getSelectedItem().toString().equals("")) {
+			return false;
+		}
+		
+		return true;
+		
+	}
 
 	private void clearReg() {
 		mf.getRp().getTxt_email().setText("");

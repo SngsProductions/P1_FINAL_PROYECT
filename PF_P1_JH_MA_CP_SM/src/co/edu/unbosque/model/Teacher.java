@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Teacher extends Person implements Serializable{
 
+	
 	/**
 	 * 
 	 */
@@ -11,7 +12,8 @@ public class Teacher extends Person implements Serializable{
 
 	public Teacher(String name,String lastname, String id, String email, String gen, String prog, String borned, String nat,
 			String times) {
-		super(name, id, email, gen, prog, borned, nat, times, lastname);
+		
+		//super(name, id, email, gen, prog, borned, nat, times, lastname, times, active_c);
 		// TODO Auto-generated constructor stub
 	}
 

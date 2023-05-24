@@ -52,18 +52,19 @@ public class IncomePane extends JPanel{
 		btn_cancel.setOpaque(false);
 		btn_cancel.setContentAreaFilled(false);
 		 
-		btn_cancel.setActionCommand("CANCEL");
+		btn_cancel.setActionCommand("CANCEL_IP");
 		add(btn_cancel);
 		
 		btn_income = new JButton();
 		btn_income.setVisible(true);
-		btn_income.setBorder(null);
+//		btn_income.setBorder(null);
 		//btn_income.setIcon(new ImageIcon("icons\\BtnIng.png"));
 		btn_income.setBounds(160,400,200,40);
-		btn_income.setBorderPainted(false);
-		btn_income.setOpaque(false);
-		btn_income.setContentAreaFilled(false);
-		btn_income.setBorderPainted(false); 
+//		btn_income.setBorderPainted(false);
+//		btn_income.setOpaque(false);
+//		btn_income.setContentAreaFilled(false);
+//		btn_income.setBorderPainted(false); 
+		btn_income.setBackground(Color.black);
 		btn_income.setActionCommand("INCOME");
 		add(btn_income);
 		

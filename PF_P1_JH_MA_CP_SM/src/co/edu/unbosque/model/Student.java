@@ -42,13 +42,21 @@ public class Student extends Person implements Serializable{
 		    "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa","Republica Democratica del congo"}; 
 	
 	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	public Student(String name,String lastname, String id, String email, String gen, String prog, String borned, String nat,
-			String times) {
-		super(name,lastname, id, email, gen, prog, borned, nat, times);
+			String times, String code, boolean active_c) {
+		
+		super(name,lastname, id, email, gen, prog, borned, nat, times,code ,active_c);
 		
 		
 	}
+	
+	
+
 	@Override
 	public String toString() {
 		return "Student [Identificacion :" + id + "]" + "Nombre : " +name  + " Apellido: "+ lastname+ "Genero : "+ gen+
@@ -57,19 +65,7 @@ public class Student extends Person implements Serializable{
 	}
 	
 	
-	public void pushData(JComboBox cbx_n, JComboBox cbx_borned, JComboBox cbx_gender, JComboBox cbx_program) {
-		
-		for (int g = 0 ; g< gender.length; g++) {
-			cbx_gender.addItem(gender[g].toString());
-		}
-		for (int b = 0 ; b< nation.length; b++) {
-			cbx_n.addItem(nation[b].toString());
-		}
-		for (int p = 0 ; p< program.length; p++) {
-			cbx_program.addItem(program[p].toString());
-		}	
-		
-	}
+	
 	public RegisterPane getRp() {
 		return rp;
 	}

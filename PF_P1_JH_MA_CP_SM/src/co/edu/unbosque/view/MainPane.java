@@ -45,7 +45,7 @@ public class MainPane extends JPanel {
 		btn_reg.setVisible(true);
 		btn_reg.setBackground(null);
 		btn_reg.setBorder(null);
-		btn_reg.setBounds(180,450,300,60);
+		btn_reg.setBounds(180,410,300,60);
 		btn_reg.setOpaque(false);  // Hace que el botón no sea opaco
 		btn_reg.setContentAreaFilled(false);  // Hace que el área de contenido del botón no esté llena
 		btn_reg.setBorderPainted(false); 
@@ -77,7 +77,7 @@ public class MainPane extends JPanel {
 		add(btn_exit);
 		
 		img_sup = new JLabel();
-		img_sup.setIcon(new ImageIcon("icons\\1.gif"));
+		img_sup.setIcon(new ImageIcon("icons\fondop.gif"));
 		img_sup.setBounds(0,0,1280,720);
 		add(img_sup);
 	}

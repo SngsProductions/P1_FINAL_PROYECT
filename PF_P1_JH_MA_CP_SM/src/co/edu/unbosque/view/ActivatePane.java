@@ -42,7 +42,7 @@ public class ActivatePane extends JPanel{
 	
 		
 		img_ac = new JLabel();
-		img_ac.setIcon(new ImageIcon("icons\\3.png"));
+		img_ac.setIcon(new ImageIcon("icons\\activate.png"));
 		img_ac.setBounds(0, 0, 1366, 768);
 		add(img_ac);
 		
@@ -53,11 +53,9 @@ public class ActivatePane extends JPanel{
 		btn_cancel.setBorderPainted(false);
 		btn_cancel.setOpaque(false);
 		btn_cancel.setContentAreaFilled(false);
-		 
-		
 		btn_cancel.setIcon(new ImageIcon("icons\\BtnCan.png"));
 		btn_cancel.setBounds(190,550,225,40);
-		btn_cancel.setActionCommand("CANCEL");
+		btn_cancel.setActionCommand("CANCEL_AP");
 		add(btn_cancel);
 		
 		
@@ -68,7 +66,6 @@ public class ActivatePane extends JPanel{
 		btn_activate.setBorderPainted(false);
 		btn_activate.setOpaque(false);
 		btn_activate.setContentAreaFilled(false);
-		 
 		btn_activate.setActionCommand("ACTIVATE");
 		add(btn_activate);
 		

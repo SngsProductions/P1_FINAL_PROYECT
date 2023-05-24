@@ -6,6 +6,7 @@ public abstract class Person implements Serializable {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	protected String name;
 	protected String id;
@@ -16,7 +17,14 @@ public abstract class Person implements Serializable {
 	protected String nat;
 	protected String times;
 	protected String lastname;
-public Person(String name,String lastname,String id,String email,String gen,String prog,String borned,String nat,String times) {
+	protected String code;
+	protected boolean active_c;
+	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
+	
+public Person(String name,String lastname,String id,String email,String gen,String prog,String borned,String nat,String times, String code ,boolean active_c) {
 this.borned=borned;
 this.name=name;
 this.id=id;
@@ -26,6 +34,8 @@ this.prog=prog;
 this.nat=nat;
 this.times=times;
 this.lastname=lastname;
+this.code = code;
+this.active_c = active_c;
 }
 public String getName() {
 	return name;
@@ -81,5 +91,21 @@ public String getLastname() {
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
+public String getCode() {
+	return code;
+}
+public void setCode(String code) {
+	this.code = code;
+}
+public boolean isActive_c() {
+	return active_c;
+}
+public void setActive_c(boolean active_c) {
+	this.active_c = active_c;
+}
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
 
 }

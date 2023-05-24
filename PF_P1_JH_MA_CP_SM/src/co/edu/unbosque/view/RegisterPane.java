@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 public class RegisterPane extends JPanel {
 	
 	private JTextField txt_name;
+	private JTextField txt_last;
 	private JTextField txt_id;
 	private JTextField txt_email;
 	private JComboBox cbx_gender;
@@ -41,27 +42,34 @@ public class RegisterPane extends JPanel {
 		txt_name.setVisible(true);
 		txt_name.setBackground(null);
 		txt_name.setBorder(null);
-		txt_name.setBounds(750,200,350,20);
+		txt_name.setBounds(720,150,320,20);
 		add(txt_name);
+		
+		txt_last = new JTextField();
+		txt_last.setVisible(true);
+		txt_last.setBackground(null);
+		txt_last.setBorder(null);
+		txt_last.setBounds(720,200,320,20);
+		add(txt_last);
 		
 		txt_id = new JTextField();
 		txt_id.setVisible(true);
-		txt_id.setBounds(750,280,350,20);
+		txt_id.setBounds(720,280,320,20);
 		add(txt_id);
 		
 		txt_email = new JTextField();
 		txt_email.setVisible(true);
-		txt_email.setBounds(750,350,350,20);
+		txt_email.setBounds(720,350,320,20);
 		add(txt_email);
 		
 		cbx_gender = new JComboBox();
 		cbx_gender.setVisible(true);
-		cbx_gender.setBounds(750,420,350,20);
+		cbx_gender.setBounds(720,420,320,20);
 		add(cbx_gender);
 		
 		cbx_program = new JComboBox();
 		cbx_program.setVisible(true);
-		cbx_program.setBounds(750,480,350,20);
+		cbx_program.setBounds(720,480,320,20);
 		add(cbx_program);
 		
 
@@ -74,7 +82,6 @@ public class RegisterPane extends JPanel {
 		
 		cbx_borned = new JComboBox();
 		cbx_borned.setVisible(true);
-		cbx_borned.setBackground(Color.decode("#afea34"));
 		cbx_borned.setBounds(750,640,350,20);
 		add(cbx_borned);
 		
@@ -95,12 +102,13 @@ public class RegisterPane extends JPanel {
 		add(btn_cancel);
 		
 		img_back = new JLabel();
-		img_back.setIcon(new ImageIcon("icons\\2.png"));
+		img_back.setIcon(new ImageIcon("icons\\10.png"));
 		img_back.setBounds(0,0,1366,768);
 		add(img_back);
 	}
 
 	public JTextField getTxt_name() {
+		
 		return txt_name;
 	}
 

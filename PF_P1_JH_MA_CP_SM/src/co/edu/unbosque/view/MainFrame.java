@@ -18,6 +18,7 @@ public class MainFrame extends JFrame{
 	private IncomePane ip;
 	private JButton btn_exit;
 	private JButton btn_reg;
+	private IncomeTeacher ipt;
 	
 	
 	public MainFrame() {
@@ -56,11 +57,24 @@ public class MainFrame extends JFrame{
 		getContentPane().add(mp);
 		repaint();
 		
+		ipt= new IncomeTeacher();
+		ipt.setVisible(false);
+		getContentPane().add(ipt);
+		repaint();
+		
 		
 	}
 	
 	
 
+
+	public IncomeTeacher getIpt() {
+		return ipt;
+	}
+
+	public void setIpt(IncomeTeacher ipt) {
+		this.ipt = ipt;
+	}
 
 	public IncomePane getIp() {
 		return ip;
